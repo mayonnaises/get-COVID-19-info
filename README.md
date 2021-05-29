@@ -33,3 +33,6 @@ $ python3 get_pcr_positives.py
 ```
 >>> pcr.get_minus_date(-3)
 ```
+## Links
+詳細については、以下のリンクを参照してください。
+「厚生労働省・新型コロナウイルス感染症について](https://www.mhlw.go.jp/stf/covid-19/kokunainohasseijoukyou.html)
