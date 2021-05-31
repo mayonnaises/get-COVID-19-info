@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 '''
+Python 3.8
+
 厚生労働省が発表している
 新型コロナウイルスの国内陽性者数を取得
 
-網羅的な情報を知りたい場合はファイルを実行
+網羅的な陽性者数情報を知りたい場合はファイルを実行
 
 特定の日付の陽性者数を知りたい場合は
     get_specified_date 関数を実行
@@ -52,18 +54,16 @@ def get_positives_data():
 
 
     # キーが日付、値が報告された数の辞書に変換
-    # 辞書内包表記 + ウォルラス演算子
     global positives_data
     positives_data = {info[0]: int(info[1]) for data in data_list[1:]
-                 if (info := get_date_and_count(data))}
+                      if (info := get_date_and_count(data))}
 
 
 def get_today_data():
     '''今日の陽性者数'''
     str_now = get_date_text(datetime.datetime.now())
-    count = positives_data.get(str_now)
 
-    if count is not None:
+    if (count := positives_data.get(str_now)) is not None:
         print(f'\n今日({str_now}) の陽性者数 : {count}人\n')
     else:
         print(f'\n今日({str_now}) の陽性者数はまだ発表されていません\n')
@@ -73,9 +73,8 @@ def get_yesterday_data():
     '''昨日の陽性者数'''
     yesterday = datetime.datetime.now() - datetime.timedelta(days=1)
     str_yesterday = get_date_text(yesterday)
-    count = positives_data.get(str_yesterday)
 
-    if count is not None:
+    if (count := positives_data.get(str_yesterday)) is not None:
         print(f'昨日({str_yesterday}) の陽性者数 : {count}人\n')
     else:
         print(f'昨日({str_yesterday}) の陽性者数はまだ発表されていません\n')
@@ -85,9 +84,8 @@ def get_two_days_ago():
     '''一昨日の陽性者数'''
     two_days_ago = datetime.datetime.now() - datetime.timedelta(days=2)
     str_day = get_date_text(two_days_ago)
-    count = positives_data.get(str_day)
 
-    if count is not None:
+    if (count := positives_data.get(str_day)) is not None:
         print(f'一昨日({str_day}) の陽性者数 : {count}人\n')
     else:
         print(f'一昨日({str_day}) の陽性者数はまだ発表されていません\n')
@@ -100,9 +98,8 @@ def get_week_average():
 
     for day in range(7):
         back_day = get_date_text(now - datetime.timedelta(days=day))
-        count = positives_data.get(back_day)
 
-        if count is not None:
+        if (count := positives_data.get(back_day)) is not None:
             sum_week_positives += count
 
     week_average = sum_week_positives / 7
@@ -117,9 +114,8 @@ def get_month_average():
 
     for day in range(30):
         back_day = get_date_text(now - datetime.timedelta(days=day))
-        count = positives_data.get(back_day)
 
-        if count is not None:
+        if (count := positives_data.get(back_day)) is not None:
             sum_month_positives += count
 
     month_average = sum_month_positives / 30
@@ -149,9 +145,8 @@ def get_specified_date(year: int, month: int, day: int):
     get_positives_data()
 
     date = f'{year}/{month}/{day}'
-    count = positives_data.get(date)
 
-    if count is not None:
+    if (count := positives_data.get(date)) is not None:
         print(f'{year}年{month}月{day}日 の陽性者数 : {count}人')
     else:
         print(f'指定された日({year}/{month}/{day}) のデータはありません')
@@ -176,9 +171,8 @@ def get_minus_date(day: int):
         # 指定された日数分戻った日付を取得
         get_day = datetime.datetime.now() - datetime.timedelta(days=day)
         str_day = get_date_text(get_day)
-        count = positives_data.get(str_day)
 
-        if count is not None:
+        if (count := positives_data.get(str_day)) is not None:
             print(f'{str_day} の陽性者数 : {count}人')
         else:
             print(f'指定された日({str_day}) のデータはありません')
