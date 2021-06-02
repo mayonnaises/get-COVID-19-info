@@ -1,4 +1,5 @@
 # Run with Python 3.9
+# number_of_cases/get_JP_pcr_positives.py
 # -*- coding: utf-8 -*-
 
 '''
@@ -17,7 +18,7 @@ If you want to know the number of positives a few days before the current date a
 
 
 Execution example:
->>> import get_pcr_positives as pcr
+>>> import get_JP_pcr_positives as pcr
 >>> pcr.get_specified_date(2021, 5, 1)
 Number of positives 2021/5/1 : 5813 people
 '''
