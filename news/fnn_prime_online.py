@@ -96,9 +96,7 @@ class SelectNews(FNNPrimeOnline):
             for number in numbers:
 
                 # [news title, news url]
-                news_info = self.title_dict.get(number)
-
-                if news_info is not None:
+                if (news_info := self.title_dict.get(number)) is not None:
                     news_body = self.get_news_body(news_info)
 
                     print(
