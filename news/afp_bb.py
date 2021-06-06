@@ -4,8 +4,10 @@ import requests
 from bs4 import BeautifulSoup
 
 '''
+URL : https://www.afpbb.com/
 
 Search AFP BB News sites and get articles about COVID-19.
+
 
 If you only want to know the title, run the file.
 News titles are displayed in a list.
@@ -28,7 +30,6 @@ Execution example:
            new body
               .
               .
-
 '''
 
 

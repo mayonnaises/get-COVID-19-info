@@ -4,14 +4,13 @@ import requests
 from bs4 import BeautifulSoup
 
 '''
-
-2021/6
-
 URLs that FNN Prime Online allows to crawl
 
 Allow: /
 
-++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++
+
+URL : https://www.fnn.jp/
 
 Search FNN Prime Online sites and get articles about COVID-19.
 
@@ -36,7 +35,6 @@ Execution example:
            new body
               .
               .
-
 '''
 
 
