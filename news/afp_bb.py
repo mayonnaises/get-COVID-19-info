@@ -60,6 +60,47 @@ class AFPBBNews:
             print(f'\n{index} : {title[0]}')
 
 
+class SelectNews(AFPBBNews):
+
+    def __init__(self):
+        # News site domain
+        self.domain = 'https://www.afpbb.com/'
+
+        super().__init__()
+        self.get_titles()
+        self.display_titles()
+
+    def get_news_body(self, news_info):
+        '''Get the body of the news'''
+        response = requests.get(self.domain + news_info[1])
+        parse = BeautifulSoup(response.text, 'html.parser')
+        news_body = parse.select_one(
+            'div.article-body').get_text()
+        return news_body
+
+    def select(self, numbers: list):
+        '''
+        Please give a list of news numbers for which you want to know the body.
+        '''
+        border = '*' * 12
+
+        if isinstance(numbers, list):
+            for number in numbers:
+
+                # [news title, news url]
+                if (news_info := self.title_dict.get(number)) is not None:
+                    news_body = self.get_news_body(news_info)
+
+                    print(
+                        f'\n\n{border} {news_info[0]} {border}\n{news_body}')
+                else:
+                    print(
+                        f'\n\nNo.{number} news does not exist.\nPlease enter the correct number.')
+
+        else:
+            raise TypeError(f'select() argument must be a list')
+
+
 
 if __name__ == '__main__':
     afp = AFPBBNews()
