@@ -1,3 +1,4 @@
+# Run with Python 3.9
 # news/fnn_prime_online.py
 # -*- coding: utf-8 -*-
 import requests

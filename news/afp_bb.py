@@ -1,3 +1,4 @@
+# Run with Python 3.9
 # news/afp_bb.py
 # -*- coding: utf-8 -*-
 import requests
