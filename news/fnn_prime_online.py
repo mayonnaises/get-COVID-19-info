@@ -98,11 +98,10 @@ class SelectNews(FNNPrimeOnline):
                 if (news_info := self.title_dict.get(number)) is not None:
                     news_body = self.get_news_body(news_info)
 
-                    print(
-                        f'\n\n{border} {news_info[0]} {border}\n{news_body}')
+                    print(f'\n\n{border} {news_info[0]} {border}\n{news_body}')
                 else:
-                    print(
-                        f'\n\nNo.{number} news does not exist.\nPlease enter the correct number.')
+                    print(f'\n\nNo.{number} news does not exist.\n'
+                          f'Please enter the correct number.')
 
         else:
             raise TypeError(f'select() argument must be a list')

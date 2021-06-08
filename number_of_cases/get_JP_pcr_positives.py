@@ -4,15 +4,17 @@
 
 '''
 Get the number of positive COVID-19
-announced by the Japanese Ministry of Health, Labor and Welfare.
+ announced by the Japanese Ministry of Health, Labor and Welfare.
 
 
-If you want to know the information comprehensively, please execute the file.
+If you want to know the information comprehensively,
+ please execute the file.
 
 If you want to know the number of positives on a particular date:
     Execute get_specified_date function
 
-If you want to know the number of positives a few days before the current date and time:
+If you want to know the number of positives a few days
+ before the current date and time:
     Specify the number of days to be subtracted as an argument
     Execute get_minus_date function
 
@@ -55,7 +57,8 @@ def get_date_text(date):
 
 def get_positives_data():
     '''Get the number of positive'''
-    res = requests.get('https://www.mhlw.go.jp/content/pcr_positive_daily.csv')
+    res = requests.get(
+        'https://www.mhlw.go.jp/content/pcr_positive_daily.csv')
     res_content = res.content.decode('utf-8')
     data_list = res_content.splitlines()
 
@@ -72,9 +75,11 @@ def get_today_data():
     str_now = get_date_text(datetime.datetime.now())
 
     if (count := positives_data.get(str_now)) is not None:
-        print(f'\nNumber of positives in today({str_now}) : {count} people\n')
+        print(f'\nNumber of positives in today'
+              f'({str_now}) : {count} people\n')
     else:
-        print(f'\nThe number of positives today({str_now}) has not yet been announced. \n')
+        print(f'\nThe number of positives today'
+              f'({str_now}) has not yet been announced. \n')
 
 
 def get_yesterday_data():
@@ -83,9 +88,11 @@ def get_yesterday_data():
     str_yesterday = get_date_text(yesterday)
 
     if (count := positives_data.get(str_yesterday)) is not None:
-        print(f'Number of positives in yesterday({str_yesterday}) : {count} people\n')
+        print(f'Number of positives in yesterday'
+              f'({str_yesterday}) : {count} people\n')
     else:
-        print(f'The number of positives yesterday({str_yesterday}) has not yet been announced.\n')
+        print(f'The number of positives yesterday'
+              f'({str_yesterday}) has not yet been announced.\n')
 
 
 def get_two_days_ago():
@@ -94,9 +101,11 @@ def get_two_days_ago():
     str_day = get_date_text(two_days_ago)
 
     if (count := positives_data.get(str_day)) is not None:
-        print(f'Number of positives in two days age({str_day}) : {count} people\n')
+        print(f'Number of positives in two days age'
+              f'({str_day}) : {count} people\n')
     else:
-        print(f'The number of positives two days ago({str_yesterday}) has not yet been announced.\n')
+        print(f'The number of positives two days ago'
+              f'({str_yesterday}) has not yet been announced.\n')
 
 
 def get_week_average():
@@ -114,7 +123,8 @@ def get_week_average():
 
     week_average = sum_week_positives / 7
 
-    print(f'Average number of positives over the last 7 days : {week_average:.1f} people\n')
+    print(f'Average number of positives '
+          f'over the last 7 days : {week_average:.1f} people\n')
 
 
 def get_month_average():
@@ -132,20 +142,24 @@ def get_month_average():
 
     month_average = sum_month_positives / 30
 
-    print(f'Average number of positives over the past month : {month_average:.1f} people\n')
+    print(f'Average number of positives '
+          f'over the past month : {month_average:.1f} people\n')
 
 
 def get_sum_positives():
     '''
     Get the total number of positives so far
-    and the ratio of the number of positives to the total population in Japan.
+     and the ratio of the number of positives
+     to the total population in Japan.
     '''
     sum_positives = sum(positives_data.values())
 
     # Assuming a total population of 125.5 million in Japan
     percentage =  (sum_positives / 125500000) * 100
 
-    print(f'Total number of positives to date : {sum_positives} people (Percentage of the Japanese population : About {percentage:.3f}%)\n')
+    print(f'Total number of positives to date : '
+          f'{sum_positives} people (Percentage of the Japanese population : '
+          f'About {percentage:.3f}%)\n')
 
 
 def get_specified_date(year: int, month: int, day: int):
@@ -163,7 +177,8 @@ def get_specified_date(year: int, month: int, day: int):
     if (count := positives_data.get(date)) is not None:
         print(f'Number of positives in {year}/{month}/{day} : {count} people')
     else:
-        print(f'There is no data for the specified date ({year}/{month}/{day})')
+        print(f'There is no data for the specified date'
+              f'({year}/{month}/{day})')
 
 
 def get_minus_date(day: int):
