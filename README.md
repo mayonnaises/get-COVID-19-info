@@ -13,7 +13,8 @@ There are many types of information to collect, so the specific usage is comment
 ## Currently implemented features
 - Gather information about COVID-19 from multiple news sites.<br><br>
   Target news sites :
-  - FNN Prime Online<br>
+  - FNN Prime Online
+  - AFPBB News<br>
   
 - Get the number of positives announced by the Japanese Ministry of Health, Labor and Welfare.<br>
 
