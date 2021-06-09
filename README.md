@@ -24,4 +24,5 @@ There are many types of information to collect, so the specific usage is comment
 
 See the links below for more information.<br>
 - [FNN Prime Online](https://www.fnn.jp/)
+- [AFPBB News](https://www.afpbb.com/)
 - [厚生労働省・新型コロナウイルス感染症について](https://www.mhlw.go.jp/stf/covid-19/kokunainohasseijoukyou.html)
