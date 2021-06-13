@@ -34,6 +34,50 @@ class BBCNews:
             print(f'\n{index} : {title[0]}')
 
 
+class SelectNews(BBCNews):
+
+    def __init__(self):
+        # News site domain
+        self.domain = 'https://www.bbc.com/'
+
+        super().__init__()
+        self.get_titles()
+        self.display_titles()
+
+    def get_news_body(self, news_info):
+        '''Get the body of the news'''
+        response = requests.get(self.domain + news_info[1])
+        parse_result = BeautifulSoup(response.text, 'html.parser')
+
+        for parse in parse_result.select('div.bbc-19j92fr'):
+            # Get body tags
+            if (p_tag := parse.find('p')) is not None:
+                yield p_tag.get_text(strip=True)
+
+    def select(self, numbers: list):
+        '''
+        Please give a list of news numbers for which you want to know the body.
+        '''
+        border = '*' * 12
+
+        if isinstance(numbers, list):
+            for number in numbers:
+
+                # [news title, news url]
+                if (news_info := self.title_dict.get(number)) is not None:
+
+                    print(f'\n\n{border} {news_info[0]} {border}\n')
+
+                    for text in self.get_news_body(news_info):
+                        print(f'{text}\n')
+                else:
+                    print(f'\n\nNo.{number} news does not exist.\n'
+                          f'Please enter the correct number.')
+
+        else:
+            raise TypeError(f'select() argument must be a list')
+
+
 if __name__ == '__main__':
     bbc = BBCNews()
     bbc.get_titles()
