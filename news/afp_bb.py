@@ -13,7 +13,7 @@ Search AFP BB News sites and get articles about COVID-19.
 If you only want to know the title, run the file.
 News titles are displayed in a list.
 
-If you want to select the news and get the body, call SelectNewsClass.
+If you want to select the news and get the body, call SelectNews class.
 By passing the number list of the news,
 those body will be displayed.
 
