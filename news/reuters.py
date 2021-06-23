@@ -35,7 +35,7 @@ Execution example:
 '''
 
 
-class REUTERS:
+class REUTERSjp:
 
     def __init__(self):
         self.response = requests.get(
@@ -62,7 +62,53 @@ class REUTERS:
             print(f'\n{index} : {title[0]}')
 
 
+class SelectNews(REUTERSjp):
+
+    def __init__(self):
+        # News site domain
+        self.domain = 'https://jp.reuters.com/'
+
+        super().__init__()
+        self.get_titles()
+        self.display_titles()
+
+    def get_news_body(self, news_info):
+        '''Get the body of the news'''
+        response = requests.get(self.domain + news_info[1])
+        parse = BeautifulSoup(response.text, 'html.parser')
+
+        article_content = []
+        for parse in parse.select('p.Paragraph-paragraph-2Bgue'):
+            article_content.append(parse.get_text())
+
+        news_body = '\n\n'.join(article_content)
+
+        return news_body
+
+    def select(self, numbers: list):
+        '''
+        Please give a list of news numbers for which you want to know the body.
+        '''
+        border = '*' * 12
+
+        if isinstance(numbers, list):
+            for number in numbers:
+
+                # [news title, news url]
+                if (news_info := self.title_dict.get(number)) is not None:
+                    news_body = self.get_news_body(news_info)
+
+                    print(f'\n\n{border} {news_info[0]} {border}\n{news_body}')
+                else:
+                    print(f'\n\nNo.{number} news does not exist.\n'
+                          f'Please enter the correct number.')
+
+        else:
+            raise TypeError(f'select() argument must be a list')
+
+
+
 if __name__ == '__main__':
-    reuters = REUTERS()
+    reuters = REUTERSjp()
     reuters.get_titles()
     reuters.display_titles()
