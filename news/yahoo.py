@@ -56,10 +56,10 @@ class YahooNews:
     def __iter__(self):
         parse_result = BeautifulSoup(self.response.text, 'html.parser')
 
-        for parse in parse_result.select('div.newsFeed_item_title'):
+        for parse in parse_result.select('a.newsFeed_item_link'):
             # Get news title and url
-            yield [
-                parse.get_text(strip=True)]
+            yield [parse.find(class_='newsFeed_item_title').get_text(strip=True),
+                   parse['href']]
 
     def get_titles(self):
         '''
@@ -72,6 +72,18 @@ class YahooNews:
     def display_titles(self):
         for index, title in self.title_dict.items():
             print(f'\n{index} : {title[0]}')
+
+
+class SelectNews(YahooNews):
+
+    def __init__(self):
+        # News site domain
+        self.domain = 'https://news.yahoo.co.jp/'
+
+        super().__init__()
+        self.get_titles()
+        self.display_titles()
+
 
 
 if __name__ == '__main__':
