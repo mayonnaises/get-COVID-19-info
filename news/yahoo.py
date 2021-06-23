@@ -48,6 +48,7 @@ Execution example:
 
 
 class YahooNews:
+
     def __init__(self):
         self.response = requests.get(
             'https://news.yahoo.co.jp/search?p=コロナウイルス&ei=utf-8')
@@ -84,6 +85,34 @@ class SelectNews(YahooNews):
         self.get_titles()
         self.display_titles()
 
+    def get_news_body(self, news_info):
+        '''Get the body of the news'''
+        response = requests.get(news_info[1])
+        parse = BeautifulSoup(response.text, 'html.parser')
+        news_body = parse.select_one(
+            'div.article_body').get_text()
+        return news_body
+
+    def select(self, numbers: list):
+        '''
+        Please give a list of news numbers for which you want to know the body.
+        '''
+        border = '*' * 12
+
+        if isinstance(numbers, list):
+            for number in numbers:
+
+                # [news title, news url]
+                if (news_info := self.title_dict.get(number)) is not None:
+                    news_body = self.get_news_body(news_info)
+
+                    print(f'\n\n{border} {news_info[0]} {border}\n{news_body}')
+                else:
+                    print(f'\n\nNo.{number} news does not exist.\n'
+                          f'Please enter the correct number.')
+
+        else:
+            raise TypeError(f'select() argument must be a list')
 
 
 if __name__ == '__main__':
