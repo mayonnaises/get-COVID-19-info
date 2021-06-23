@@ -15,7 +15,8 @@ There are many types of information to collect, so the specific usage is comment
   Target news sites :
   - AFPBB News
   - BBC News
-  - FNN Prime Online<br>
+  - FNN Prime Online
+  - Yahoo News<br>
   
 - Get the number of positives announced by the Japanese Ministry of Health, Labor and Welfare.<br>
 
@@ -27,4 +28,5 @@ See the links below for more information.<br>
 - [AFPBB News](https://www.afpbb.com/)
 - [BBC News](https://www.bbc.com/japanese/52137815)
 - [FNN Prime Online](https://www.fnn.jp/)
+- [Yahoo News](https://news.yahoo.co.jp/)
 - [厚生労働省・新型コロナウイルス感染症について](https://www.mhlw.go.jp/stf/covid-19/kokunainohasseijoukyou.html)
