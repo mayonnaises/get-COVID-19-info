@@ -9,8 +9,6 @@ URLs that FNN Prime Online allows to crawl
 
 Allow: /
 
-++++++++++++++++++++++++++++++++++++++++++++++
-
 URL : https://www.fnn.jp/
 
 Search FNN Prime Online sites and get articles about COVID-19.
